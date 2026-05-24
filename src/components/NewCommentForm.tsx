@@ -45,12 +45,14 @@ export const NewCommentForm: React.FC<Props> = ({ onAddComment }) => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    const isFormValid =
-      authorName.trim() && authorEmail.trim() && commentBody.trim();
+    const name = authorName.trim();
+    const email = authorEmail.trim();
+    const body = commentBody.trim();
+    const isFormValid = name && email && body;
 
-    setHasNameError(!authorName);
-    setHasEmailError(!authorEmail);
-    setHasCommentError(!commentBody);
+    setHasNameError(!name);
+    setHasEmailError(!email);
+    setHasCommentError(!body);
 
     if (!isFormValid) {
       return;
@@ -60,9 +62,9 @@ export const NewCommentForm: React.FC<Props> = ({ onAddComment }) => {
 
     try {
       await onAddComment({
-        name: authorName,
-        email: authorEmail,
-        body: commentBody,
+        name,
+        email,
+        body,
       });
 
       setCommentBody('');

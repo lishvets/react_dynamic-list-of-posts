@@ -17,12 +17,12 @@ export const UserSelector: React.FC<Props> = ({
   const selectedUser = users.find(user => user.id === selectedUserId);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const handleselectUser = (user: User) => {
+  const handleSelectUser = (user: User) => {
     onUserSelected(user.id);
     setIsDropdownActive(false);
   };
 
-  const handledropdownToggle = () => {
+  const handleDropdownToggle = () => {
     setIsDropdownActive(prevState => !prevState);
   };
 
@@ -60,7 +60,7 @@ export const UserSelector: React.FC<Props> = ({
           aria-haspopup="true"
           aria-controls="dropdown-menu"
           disabled={users.length === 0}
-          onClick={handledropdownToggle}
+          onClick={handleDropdownToggle}
         >
           {selectedUser ? (
             <span>{selectedUser.name}</span>
@@ -81,7 +81,7 @@ export const UserSelector: React.FC<Props> = ({
                 'is-active': user.id === selectedUserId,
               })}
               key={user.id}
-              onClick={() => handleselectUser(user)}
+              onClick={() => handleSelectUser(user)}
             >
               {user.name}
             </a>

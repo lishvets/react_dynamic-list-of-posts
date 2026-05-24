@@ -57,9 +57,17 @@ export const PostDetails: React.FC<Props> = ({ selectedPost }) => {
     }
   };
 
-  const handleDeleteComment = (id: number) => {
+  const handleDeleteComment = async (id: number) => {
+    const prevComments = comments;
+
     setComments(current => current.filter(comment => comment.id !== id));
-    deleteComment(id);
+
+    try {
+      await deleteComment(id);
+    } catch {
+      setComments(prevComments);
+      setCommentsError('Something went wrong');
+    }
   };
 
   return (

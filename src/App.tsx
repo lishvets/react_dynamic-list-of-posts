@@ -13,7 +13,6 @@ import { UserSelector } from './components/UserSelector';
 import { Loader } from './components/Loader';
 
 import { getUsers } from './api/users';
-//import { getPosts } from './api/posts';//
 import { client } from './utils/fetchClient';
 
 export const App = () => {
@@ -100,11 +99,7 @@ export const App = () => {
                   <PostsList
                     posts={posts}
                     selectedPost={selectedPost}
-                    onPostSelected={post => {
-                      setSelectedPost(current =>
-                        current?.id === post.id ? null : post,
-                      );
-                    }}
+                    onPostSelected={setSelectedPost}
                   />
                 )}
               </div>
